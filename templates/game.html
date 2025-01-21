@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+</head>
+<body>
+    <h2>Tic-Tac-Toe Game</h2>
+    <div id="board">
+        <button onclick="makeMove(0)" id="cell-0"></button>
+        <button onclick="makeMove(1)" id="cell-1"></button>
+        <button onclick="makeMove(2)" id="cell-2"></button><br>
+        <button onclick="makeMove(3)" id="cell-3"></button>
+        <button onclick="makeMove(4)" id="cell-4"></button>
+        <button onclick="makeMove(5)" id="cell-5"></button><br>
+        <button onclick="makeMove(6)" id="cell-6"></button>
+        <button onclick="makeMove(7)" id="cell-7"></button>
+        <button onclick="makeMove(8)" id="cell-8"></button>
+    </div>
+    
+    <script>
+        let gameBoard = "{{ game.board }}".split("");
+
+        function updateBoard() {
+            for (let i = 0; i < 9; i++) {
+                document.getElementById("cell-" + i).innerText = gameBoard[i] === "-" ? "" : gameBoard[i];
+            }
+        }
+
+        function makeMove(cell) {
+            const token = localStorage.getItem("access_token");
+
+            if (gameBoard[cell] === "-") {
+                fetch('/game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({
+                        move: cell
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    gameBoard = data.board.split("");
+                    updateBoard();
+                });
+            }
+        }
+
+        updateBoard();
+    </script>
+</body>
+</html>
