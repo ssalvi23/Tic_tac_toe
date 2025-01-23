@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4">Profile</h2>
+    <div id="profileDetails" class="space-y-4">
+        <div>
+            <span class="font-medium">Username:</span> <span id="username"></span>
+        </div>
+        <div>
+            <a href="/game" class="bg-blue-500 text-white py-2 px-4 rounded">Play Game</a>
+        </div>
+    </div>
+</div>
+<script>
+    // Fetch profile data and display it
+    fetch('/game/history/1')
+        .then(response => response.json())
+        .then(history => {
+            const list = history.map(game => `
+                <li>
+                    Opponent: ${game.opponent}, Winner: ${game.winner}, Moves: ${JSON.stringify(game.moves)}
+                </li>
+            `);
+            document.getElementById('matchHistory').innerHTML = list.join('');
+        });
+</script>
+{% endblock %}
