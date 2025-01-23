@@ -52,3 +52,19 @@ Ensure you have the following installed on your system:
    ```bash
    git clone https://github.com/yourusername/multiplayer-tic-tac-toe.git
    cd multiplayer-tic-tac-toe
+
+2. Create Virtual Environment and Activate It
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+
+4. Install Dependencies
+   ```bash
+   pip install -r requirements.txt
+
+6. Run the Application
+   ```bash
+   python app.py
+
+## Open your browser and navigate to:
+http://127.0.0.1:5000
