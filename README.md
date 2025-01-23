@@ -11,9 +11,7 @@ A real-time multiplayer Tic-Tac-Toe web application built with Flask, SQLAlchemy
 
 ---
 
-## Tech Stack
-
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend
 - **Flask**: Lightweight Python web framework for routing and server-side logic.  
